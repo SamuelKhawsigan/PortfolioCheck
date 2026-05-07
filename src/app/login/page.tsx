@@ -39,17 +39,9 @@ export default function LoginPage() {
     const result = await signIn("credentials", {
       username,
       password,
-      redirect: false,
+      redirect: true,
+      callbackUrl: "/admin",
     });
-
-    if (result?.error) {
-      // Reset loading so the user can try again
-      setError("Invalid credentials. Please try again.");
-      setLoading(false);
-    } else {
-      // Keep loading=true to prevent UI flicker during navigation
-      router.push("/admin");
-    }
   };
 
   return (

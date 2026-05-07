@@ -4,6 +4,18 @@ import Credentials from "next-auth/providers/credentials";
 // This configuration is "Edge-safe" because it doesn't import Prisma or Bcrypt directly.
 export const authConfig = {
   trustHost: true,
+  session: { strategy: "jwt" },
+  cookies: {
+    sessionToken: {
+      name: `next-auth.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production" && !process.env.AUTH_URL?.startsWith("http://"),
+      },
+    },
+  },
   providers: [
     // We leave this empty or with minimal config; 
     // the full implementation will be in auth.ts
