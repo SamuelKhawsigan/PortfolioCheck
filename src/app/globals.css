@@ -49,11 +49,13 @@ button {
   border-radius: var(--radius);
 }
 
-/* Text Gradients */
+/* Text gradient — requires both the standard and webkit-prefixed properties */
 .text-gradient {
   background: linear-gradient(135deg, #fff 0%, #888 100%);
-  -webkit-background-clip: text;
+  background-clip: text;           /* Standard (Firefox, modern Chrome) */
+  -webkit-background-clip: text;   /* Safari / older Chrome */
   -webkit-text-fill-color: transparent;
+  color: transparent;              /* Fallback for browsers without -webkit-text-fill-color */
 }
 
 /* Animations */

@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
-import { FolderLock, Plus, Edit2, Trash2, ExternalLink } from "lucide-react";
+import type { Project } from "@/generated/prisma/client";
+import { FolderKanban, Plus, Edit2, Trash2, ExternalLink } from "lucide-react";
 import Link from "next/link";
 
 export default async function AdminProjects() {
@@ -46,7 +47,7 @@ export default async function AdminProjects() {
                 </td>
               </tr>
             ) : (
-              projects.map((project) => (
+              projects.map((project: Project) => (
                 <tr key={project.id} style={{ borderBottom: "1px solid var(--card-border)" }}>
                   <td style={{ padding: "16px 24px" }}>
                     <div style={{ fontWeight: "600" }}>{project.title}</div>
@@ -54,7 +55,7 @@ export default async function AdminProjects() {
                   </td>
                   <td style={{ padding: "16px 24px" }}>
                     <div style={{ display: "flex", gap: "4px" }}>
-                      {project.techStack.map(tech => (
+                      {project.techStack.map((tech: string) => (
                         <span key={tech} style={{ 
                           fontSize: "0.7rem", 
                           background: "var(--card-border)", 

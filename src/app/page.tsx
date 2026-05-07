@@ -1,5 +1,5 @@
 import Navbar from "@/components/Navbar";
-import { ArrowRight, Github, Linkedin, Mail, ExternalLink, Code2, Terminal, Award } from "lucide-react";
+import { ArrowRight, AtSign, ExternalLink, Code2, Terminal, Award } from "lucide-react";
 
 export default function Home() {
   return (
@@ -98,7 +98,7 @@ export default function Home() {
                 </p>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div style={{ display: "flex", gap: "12px" }}>
-                    <Github size={18} color="var(--muted)" />
+                    <Code2 size={18} color="var(--muted)" />
                     <ExternalLink size={18} color="var(--muted)" />
                   </div>
                   <ArrowRight size={18} color="var(--accent)" />
@@ -166,9 +166,9 @@ export default function Home() {
           © 2026 Portfolio Backend. All rights reserved.
         </div>
         <div style={{ display: "flex", gap: "24px" }}>
-          <Linkedin size={20} color="var(--muted)" />
-          <Github size={20} color="var(--muted)" />
-          <Mail size={20} color="var(--muted)" />
+          <AtSign size={20} color="var(--muted)" />
+          <Code2 size={20} color="var(--muted)" />
+          <AtSign size={20} color="var(--muted)" />
         </div>
       </footer>
     </main>
