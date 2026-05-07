@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id           String   @id @default(uuid())
+  username     String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Profile {
+  id          String   @id @default(uuid())
+  name        String
+  bio         String   @db.Text
+  email       String
+  githubUrl   String?
+  linkedinUrl String?
+  resumeUrl   String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  imageUrl    String?
+  repoUrl     String?
+  liveUrl     String?
+  isPublished Boolean  @default(false)
+  techStack   String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CtfWriteup {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  competition String
+  category    String
+  content     String   @db.Text
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Media {
+  id         String   @id @default(uuid())
+  fileUrl    String
+  altText    String?
+  metadata   Json?
+  uploadedAt DateTime @default(now())
+}
+
+model Certification {
+  id            String   @id @default(uuid())
+  title         String
+  issuer        String
+  dateAcquired  DateTime
+  credentialId  String?
+  credentialUrl String?
+  createdAt     DateTime @default(now())
+}
+
+model Experience {
+  id           String    @id @default(uuid())
+  role         String
+  company      String
+  startDate    DateTime
+  endDate      DateTime?
+  description  String    @db.Text
+  isLeadership Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Skill {
+  id               String   @id @default(uuid())
+  category         String
+  name             String
+  proficiencyLevel Int      @default(1)
+  createdAt        DateTime @default(now())
+}
+
+model ContactMessage {
+  id          String   @id @default(uuid())
+  senderName  String
+  senderEmail String
+  message     String   @db.Text
+  receivedAt  DateTime @default(now())
+  isRead      Boolean  @default(false)
+}
+
+model BlogPost {
+  id          String   @id @default(uuid())
+  title       String
+  slug        String   @unique
+  content     String   @db.Text
+  tags        String[]
+  publishedAt DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
