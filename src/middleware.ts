@@ -1,16 +1,14 @@
-import { auth } from "@/lib/auth";
+import NextAuth from "next-auth";
+import { authConfig } from "@/lib/auth.config";
 
-export default auth((req) => {
-  const isAdminPath = req.nextUrl.pathname.startsWith("/api/admin") || req.nextUrl.pathname.startsWith("/admin");
-  
-  if (isAdminPath && !req.auth) {
-    return Response.json(
-      { message: "Not authenticated" },
-      { status: 401 }
-    );
-  }
-});
+// By using the authConfig here, we avoid importing Prisma/Bcrypt into the Edge runtime.
+export default NextAuth(authConfig).auth;
 
 export const config = {
-  matcher: ["/api/admin/:path*", "/admin/:path*"],
+  // Match all request paths except for the ones starting with:
+  // - api (API routes)
+  // - _next/static (static files)
+  // - _next/image (image optimization files)
+  // - favicon.ico (favicon file)
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };
