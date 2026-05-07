@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 
 // This configuration is "Edge-safe" because it doesn't import Prisma or Bcrypt directly.
 export const authConfig = {
+  trustHost: true,
   providers: [
     // We leave this empty or with minimal config; 
     // the full implementation will be in auth.ts
